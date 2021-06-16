@@ -53,7 +53,7 @@ public class UsuarioController {
 		return new ResponseEntity<>("Usuário cadastrado com sucesso !", HttpStatus.OK);
 	}
 
-	@GetMapping("/")
+	@GetMapping()
 	public List<UsuarioDto> getAll() {
 		List<Usuario> usuarios = injecao.findAll();
 
