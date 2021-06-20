@@ -28,13 +28,13 @@ public class Usuario implements Serializable{
 	@Column(name="antiga_senha_usuario")
 	private String antigaSenhaUsuario;
 	@Column(name="nivel_usuario")
-	private int nivelUsuario;
+	private Integer nivelUsuario;
 	@Column(name="status_usuario")
 	private int statusUsuario;
 	
 	
 	public Usuario(String nomeUsuario, String emailUsuario, String senhaUsuario, String antigaSenhaUsuario,
-			int nivelUsuario, int statusUsuario) {
+			Integer nivelUsuario, int statusUsuario) {
 		super();
 		this.nomeUsuario = nomeUsuario;
 		this.emailUsuario = emailUsuario;
@@ -83,10 +83,10 @@ public class Usuario implements Serializable{
 		this.antigaSenhaUsuario = antigaSenhaUsuario;
 	}
 	
-	public int getNivelUsuario() {
+	public Integer getNivelUsuario() {
 		return nivelUsuario;
 	}
-	public void setNivelUsuario(int nivelUsuario) {
+	public void setNivelUsuario(Integer nivelUsuario) {
 		this.nivelUsuario = nivelUsuario;
 	}
 	

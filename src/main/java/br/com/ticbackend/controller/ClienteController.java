@@ -50,7 +50,7 @@ public class ClienteController {
 		return clientesDto;
 	}
 
-	@GetMapping("/${id}")
+	@GetMapping("/{id}")
 	public ClienteDto getOnly(@PathVariable long id) {
 		Optional<Cliente> cliente = injecao.findById(id);
 
