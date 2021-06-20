@@ -5,7 +5,7 @@ public class UsuarioDto {
 	private long id;
 	private String nomeUsuario;
 	private String emailUsuario;
-	private int nivelUsuario;
+	private Integer nivelUsuario;
 	private int statusUsuario;
 
 
@@ -33,11 +33,11 @@ public class UsuarioDto {
 		this.emailUsuario = emailUsuario;
 	}
 
-	public int getNivelUsuario() {
+	public Integer getNivelUsuario() {
 		return nivelUsuario;
 	}
 
-	public void setNivelUsuario(int nivelUsuario) {
+	public void setNivelUsuario(Integer nivelUsuario) {
 		this.nivelUsuario = nivelUsuario;
 	}
 

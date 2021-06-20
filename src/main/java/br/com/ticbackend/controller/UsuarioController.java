@@ -1,6 +1,7 @@
 package br.com.ticbackend.controller;
 
 import java.util.ArrayList;
+import br.com.ticbackend.utils.exceptions.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ticbackend.dto.UsuarioDto;
@@ -22,6 +24,7 @@ import br.com.ticbackend.model.Usuario;
 import br.com.ticbackend.repository.UsuarioRepository;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/usuario")
 public class UsuarioController {
 
@@ -31,7 +34,6 @@ public class UsuarioController {
 	@Autowired
 	ModelMapper modelMapper;
 
-	@CrossOrigin("*")
 	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody Usuario usuario) {
 		Usuario usuarioModel = injecao.findByEmailUsuario(usuario.getEmailUsuario());
@@ -54,8 +56,14 @@ public class UsuarioController {
 	}
 
 	@GetMapping()
-	public List<UsuarioDto> getAll() {
-		List<Usuario> usuarios = injecao.findAll();
+	public List<UsuarioDto> getAll(@RequestParam(name = "nomeUsuario", required = false) String nomeUsuario,
+			@RequestParam(name = "emailUsuario", required = false) String emailUsuario,
+			@RequestParam(name = "nivelUsuario", required = false) Integer nivelUsuario) {
+
+		List<Usuario> usuarios;
+
+//			Integer nivelUsuarioInteger = Integer.getInteger(nivelUsuario);
+		usuarios = injecao.findAll(nomeUsuario, emailUsuario, nivelUsuario);
 
 		List<UsuarioDto> usuariosDto = new ArrayList<UsuarioDto>();
 
@@ -65,10 +73,12 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/{id}")
-	public UsuarioDto getOnly(@PathVariable long id) {
-		Optional<Usuario> usuario = injecao.findById(id);
-
-		return convertToDto(usuario.get());
+	public UsuarioDto getOnly(@PathVariable long id) throws NotFoundException {
+		Usuario usuario = injecao.findById(id);
+		if (usuario == null) {
+			throw new NotFoundException("Usuário não encontrado");
+		}
+		return convertToDto(usuario);
 	}
 
 	@PutMapping("/{id}")

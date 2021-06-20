@@ -161,5 +161,4 @@ public class Cliente implements Serializable {
 	public void setStatusCliente(int statusCliente) {
 		this.statusCliente = statusCliente;
 	}
-
 }
