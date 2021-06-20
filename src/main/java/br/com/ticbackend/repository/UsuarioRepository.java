@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.ticbackend.model.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{	
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	public Usuario findByEmailUsuario(String email);
 
 	public Usuario findById(long id);
