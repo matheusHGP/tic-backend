@@ -3,7 +3,6 @@ package br.com.ticbackend.controller;
 import java.util.ArrayList;
 import br.com.ticbackend.utils.exceptions.NotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +91,8 @@ public class UsuarioController {
 		return usuarioDto;
 	}
 
-	private Usuario convertToEntity(UsuarioDto usuarioDto) {
-		Usuario usuario = modelMapper.map(usuarioDto, Usuario.class);
-		return usuario;
-	}
+	// private Usuario convertToEntity(UsuarioDto usuarioDto) {
+		// Usuario usuario = modelMapper.map(usuarioDto, Usuario.class);
+		// return usuario;
+	// }
 }
