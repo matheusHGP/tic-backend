@@ -2,3 +2,4 @@ settings/
 metadata/
 target/classes/application.properties
 target/classes/META-INF/maven/br.com.tic-backend/tic-backend/pom.properties
+*.class
