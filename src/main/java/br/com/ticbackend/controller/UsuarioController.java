@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,8 +62,7 @@ public class UsuarioController {
 
 		List<Usuario> usuarios;
 
-//			Integer nivelUsuarioInteger = Integer.getInteger(nivelUsuario);
-		usuarios = injecao.findAll(nomeUsuario, emailUsuario, nivelUsuario);
+		usuarios = injecao.findAll(nomeUsuario, emailUsuario, nivelUsuario, 0);
 
 		List<UsuarioDto> usuariosDto = new ArrayList<UsuarioDto>();
 
@@ -84,6 +84,15 @@ public class UsuarioController {
 	public ResponseEntity<UsuarioDto> put(@PathVariable long id, @RequestBody Usuario usuario) {
 		injecao.save(usuario);
 		return new ResponseEntity<>(convertToDto(usuario), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> delete(@PathVariable long id){
+		Usuario usuario = injecao.findById(id);
+		usuario.setStatusUsuario(99);
+		injecao.save(usuario);
+		
+		return new ResponseEntity<>("Usuário deletado com sucesso !", HttpStatus.OK);
 	}
 
 	private UsuarioDto convertToDto(Usuario usuario) {

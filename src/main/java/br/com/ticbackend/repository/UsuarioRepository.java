@@ -12,9 +12,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Usuario findById(long id);
 
-	@Query("select c from Usuario c where (:nomeUsuario is null or c.nomeUsuario = :nomeUsuario) "
-			+ "and (:emailUsuario is null or c.emailUsuario = :emailUsuario)"
-			+ "and (:nivelUsuario is null or c.nivelUsuario = :nivelUsuario)")
-	public List<Usuario> findAll(String nomeUsuario, String emailUsuario, Integer nivelUsuario);
+	@Query("select u from Usuario u where (:nomeUsuario is null or u.nomeUsuario = :nomeUsuario) "
+			+ "and (:emailUsuario is null or u.emailUsuario = :emailUsuario)"
+			+ "and (:nivelUsuario is null or u.nivelUsuario = :nivelUsuario)"
+			+ "and (:statusUsuario is null or u.statusUsuario = :statusUsuario)")
+	public List<Usuario> findAll(String nomeUsuario, String emailUsuario, Integer nivelUsuario, Integer statusUsuario);
 
 }
